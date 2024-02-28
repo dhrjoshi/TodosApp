@@ -30,6 +30,16 @@ class UserRepository {
             throw error;
         }
     }
+
+    async update(id,data) {
+        try {
+            const response = await User.findByIdAndUpdate(id,data,{new: true});
+            return response;
+        } catch (error) {
+            console.log('Something went wrong in Repository layer');
+            throw error;
+        }
+    }
 }
 
 module.exports = UserRepository;
