@@ -6,6 +6,9 @@ dotenv.config();
 
 const connect = require('./config/database');
 
+const cors = require('cors');
+app.use(cors());
+
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 

@@ -11,7 +11,7 @@ const TaskController = require('../controllers/task-controller');
 router.post('/createTask', AuthMiddleware.auth, TaskController.create);
 router.get('/getTask/:id', TaskController.get);
 router.get('/getAllTasks', TaskController.getAll);
-router.put('/updateTask', TaskController.update);
+router.put('/updateTask/:id', TaskController.update);
 router.delete('/deleteTask/:id', AuthMiddleware.auth, TaskController.deleteTask);
 
 module.exports = router;

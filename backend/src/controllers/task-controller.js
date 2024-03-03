@@ -21,9 +21,30 @@ const create = async (req,res) => {
     }
 }
 
+const deleteTask = async (req,res) => {
+    try {
+        console.log(req.user.id);
+        const response = await taskService.deleteTask(req.params.id,req.user.id);
+        return res.status(200).json({
+            data: response,
+            success: true,
+            message: 'Successfully deleted the task',
+            err: {}
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Not able to delete the task',
+            err: error
+        });
+    }
+}
+
 const get = async (req,res) => {
     try {
-        const response = await taskService.getTaskById(req.params.id);
+        const response = await taskService.getTaskByUserId(req.params.id);
         return res.status(200).json({
             data: response,
             success: true,
@@ -72,30 +93,10 @@ const update = async (req,res) => {
         });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(200).json({
             data: {},
             success: false,
             message: 'Not able to update task',
-            err: error
-        });
-    }
-}
-
-const deleteTask = async (req,res) => {
-    try {
-        const response = await taskService.deleteTask(req.params.id,req.user.id);
-        return res.status(200).json({
-            data: response,
-            success: true,
-            message: 'Successfully deleted the task',
-            err: {}
-        });
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-            data: {},
-            success: false,
-            message: 'Not able to delete the task',
             err: error
         });
     }

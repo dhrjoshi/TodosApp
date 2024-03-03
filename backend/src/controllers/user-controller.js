@@ -12,7 +12,7 @@ const signUp = async (req,res) => {
         });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(200).json({
             data: {},
             success: false,
             message: 'Not able to sign-up',
@@ -46,7 +46,7 @@ const signIn = async (req,res) => {
         // });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(200).json({
             data: {},
             success: false,
             message: 'Not able to sign-in',

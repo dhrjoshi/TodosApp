@@ -5,8 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const auth = (req,res,next) => {
     try {
-        // console.log("cookie" , req.cookies.token);
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.body.token || req.headers.authorization;
         if(!token || token === undefined){
             throw {
                 message: 'Token Missing'
@@ -18,7 +17,7 @@ const auth = (req,res,next) => {
         next();
     } catch (error) {
         console.log(error);
-        return res.status(401).json({
+        return res.status(200).json({
             data: {},
             success: false,
             message: 'Something went wrong while verifying token',

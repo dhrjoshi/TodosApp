@@ -7,7 +7,8 @@ const userRepository = new UserRepository();
 class TaskService {
     async createTask(data,userId) {
         try {
-            const task = await taskRepository.create(data);
+            const data2 = {title:data.title,body:data.body,user:userId};
+            const task = await taskRepository.create(data2);
             const userData = userId;
             let updatedUser;
             if(userData){
@@ -20,9 +21,9 @@ class TaskService {
         }
     }
 
-    async getTaskById(id) {
+    async getTaskByUserId(id) {
         try {
-            const response = await taskRepository.get(id);
+            const response = await taskRepository.findBy(id);
             return response;
         } catch (error) {
             console.log('Something went wrong in Service layer');

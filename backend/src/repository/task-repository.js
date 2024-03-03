@@ -21,6 +21,16 @@ class TaskRepository {
         }
     }
 
+    async findBy(id) {
+        try {
+            const response = await Task.find({user: id}).exec();
+            return response;
+        } catch (error) {
+            console.log('Something went wrong in Repository layer');
+            throw error;
+        }
+    }
+
     async getAll() {
         try {
             const response = await Task.find({});
